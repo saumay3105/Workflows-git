@@ -6,21 +6,21 @@ on:
 jobs:
   export-data:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-      
+          python-version: "3.11"
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r job/requirements.txt
-      
+
       - name: Run data export job
         env:
           PG_HOST: ${{ secrets.PG_HOST }}
@@ -35,11 +35,11 @@ jobs:
           AZURE_CONTAINER_NAME: ${{ secrets.AZURE_CONTAINER_NAME }}
         run: |
           python job/data_export_job.py
-      
+
       - name: Job completion notification
         if: success()
         run: echo "✅ Data export job completed successfully!"
-      
+
       - name: Job failure notification
         if: failure()
         run: echo "❌ Data export job failed!"
