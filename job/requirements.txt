@@ -1,0 +1,6 @@
+psycopg2-binary
+pymongo
+pandas
+azure-storage-blob
+openpyxl
+dotenv
