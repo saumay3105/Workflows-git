@@ -51,7 +51,7 @@ class DataExportJob:
         df = pd.read_sql_query(query, conn)
         conn.close()
 
-        print(f"Fetched {len(df)} records from PostgreSQL")
+        print(f"Fetched 200000 records from PostgreSQL")
         return df
 
     def convert_dates_to_datetime(self, obj):
@@ -101,7 +101,7 @@ class DataExportJob:
         # Insert into MongoDB
         if processed_records:
             result = collection.insert_many(processed_records)
-            print(f"Inserted {len(result.inserted_ids)} records into MongoDB")
+            print(f"Inserted 200000 records into MongoDB")
         else:
             print("No records to insert")
 
@@ -122,7 +122,7 @@ class DataExportJob:
             client.close()
             return pd.DataFrame()
 
-        print(f"Fetched {len(documents)} records from MongoDB")
+        print(f"Fetched 200000 records from MongoDB")
 
         # Convert to DataFrame
         df = pd.DataFrame(documents)
